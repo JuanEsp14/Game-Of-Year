@@ -7,3 +7,8 @@ body {
 hr {
     background-color: gray;
 }
+
+.chart-container {
+    display: grid;
+    height: 300px;
+}
