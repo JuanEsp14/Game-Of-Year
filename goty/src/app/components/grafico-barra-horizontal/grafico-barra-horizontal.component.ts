@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit, OnDestroy } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
@@ -7,7 +7,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   templateUrl: './grafico-barra-horizontal.component.html',
   styles: []
 })
-export class GraficoBarraHorizontalComponent implements OnInit {
+export class GraficoBarraHorizontalComponent implements OnInit, OnDestroy {
 
   results: any[] = [{
     "name": "Game 1",
@@ -39,12 +39,14 @@ export class GraficoBarraHorizontalComponent implements OnInit {
 
   colorScheme = 'nightLights';
 
+  intervalo;
+
   constructor() {
     for(let i in this.results){
       this.results[i].value = Math.round(Math.random() * 500);
     }
 
-    setInterval(() => {
+    this.intervalo = setInterval(() => {
       console.log('tick');
       const newResults= [...this.results];
       for(let i in newResults){
@@ -59,6 +61,10 @@ export class GraficoBarraHorizontalComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy(){
+    clearInterval(this.intervalo);
   }
 
 }
