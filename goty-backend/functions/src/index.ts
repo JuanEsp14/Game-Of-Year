@@ -46,5 +46,27 @@ app.get('/goty',async ( req, resp) => {
   resp.json( juegos );
 });
 
+app.post('/goty/:id',async ( req, resp) => {
+  const id = req.params.id;
+  const gameRef = db.collection('goty').doc( id );
+  const gameSnap = await gameRef.get();
+
+  if( !gameSnap.exists ){
+    resp.status(404).json({
+      ok: false,
+      mensaje: 'No existe un juego con ese ID ' + id
+    })
+  }else {    
+    const antes = gameSnap.data() || { votes: 0 };
+    await gameRef.update({
+      votes: ++antes.votes
+    });
+    resp.json({
+      ok: true,
+      mensaje: `Gracias por tu voto a ${antes.name}`
+    });
+  }
+});
+
 //Se le indica a firebase que hay un servidor express corriendo
 export const api = functions.https.onRequest( app );
