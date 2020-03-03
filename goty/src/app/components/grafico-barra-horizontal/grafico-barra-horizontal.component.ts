@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit, OnDestroy } from '@angular/core';
+import { Component, NgModule, OnInit, OnDestroy, Input } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
@@ -9,7 +9,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 })
 export class GraficoBarraHorizontalComponent implements OnInit, OnDestroy {
 
-  results: any[] = [{
+    @Input() results: any[] = [];
+ /** results: any[] = [{
     "name": "Game 1",
     "value": 500
   },
@@ -24,7 +25,7 @@ export class GraficoBarraHorizontalComponent implements OnInit, OnDestroy {
   {
     "name": "Game 4",
     "value": 200
-  }];
+  }]; */
 
 
   // options

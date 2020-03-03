@@ -10,6 +10,8 @@ import { Game } from '../../interfaces/interfaces';
 })
 export class InicioComponent implements OnInit {
 
+  games: any[] = [];
+
   constructor (private db: AngularFirestore ) { }
 
   ngOnInit() {
@@ -25,8 +27,9 @@ export class InicioComponent implements OnInit {
          *   }
          * })
          */
-      })).subscribe( resp => {
-        console.log(resp);
+      })).subscribe( games => {
+        console.log(games);
+        this.games = games;
       })
   }
 
