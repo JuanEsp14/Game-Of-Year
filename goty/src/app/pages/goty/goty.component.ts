@@ -25,11 +25,18 @@ export class GotyComponent implements OnInit {
   voteGame( game: Game ){
     this.gameService.voteGame(game.id)
     .subscribe((resp: {ok: boolean, mensaje: string}) => {
-      if(resp.ok ){
+      if( resp.ok ){
         Swal.fire({
           title: 'Thank you!',
           text: resp.mensaje,
           icon: 'success',
+          confirmButtonText: 'Ok'
+        })
+      } else{
+        Swal.fire({
+          title: 'Opps!',
+          text: resp.mensaje,
+          icon: 'error',
           confirmButtonText: 'Ok'
         })
       }
