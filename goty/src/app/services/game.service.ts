@@ -28,4 +28,8 @@ export class GameService {
     return of(this.games);
     
   }
+
+  voteGame(id: string){
+    return this.http.post(`${ environment.url }/api/goty/${ id }`, {});
+  }
 }
