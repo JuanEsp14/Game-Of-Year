@@ -9,14 +9,14 @@ import { Game } from '../../interfaces/interfaces';
 })
 export class GotyComponent implements OnInit {
 
-  juegos: Game[] = [];
+  games: Game[] = [];
 
   constructor( private gameService: GameService) { }
 
   ngOnInit() {
     this.gameService.getNominados()
       .subscribe((games: Game[]) => {
-        this.juegos = games;
+        this.games = games;
         console.log(games);
       });
   }
