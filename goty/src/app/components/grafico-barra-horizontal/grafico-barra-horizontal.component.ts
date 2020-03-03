@@ -42,7 +42,8 @@ export class GraficoBarraHorizontalComponent implements OnInit, OnDestroy {
   intervalo;
 
   constructor() {
-    for(let i in this.results){
+   /**
+    *  for(let i in this.results){
       this.results[i].value = Math.round(Math.random() * 500);
     }
 
@@ -54,6 +55,7 @@ export class GraficoBarraHorizontalComponent implements OnInit, OnDestroy {
       }
       this.results = [...newResults];
     }, 1500);
+    */
   }
 
   onSelect(event) {
@@ -64,7 +66,7 @@ export class GraficoBarraHorizontalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    clearInterval(this.intervalo);
+    //clearInterval(this.intervalo);
   }
 
 }
